@@ -3,10 +3,7 @@
     class="VueCarousel"
     v-bind:class="{ 'VueCarousel--reverse': paginationPosition === 'top' }"
   >
-    <div
-      class="VueCarousel-wrapper"
-      ref="VueCarousel-wrapper"
-    >
+    <div class="VueCarousel-wrapper" ref="VueCarousel-wrapper">
       <div
         ref="VueCarousel-inner"
         :class="[
@@ -14,13 +11,13 @@
           { 'VueCarousel-inner--center': isCenterModeEnabled }
         ]"
         :style="{
-          'transform': `translate(${currentOffset}px, 0)`,
-          'transition': dragging ? 'none' : transitionStyle,
+          transform: `translate(${currentOffset}px, 0)`,
+          transition: dragging ? 'none' : transitionStyle,
           'ms-flex-preferred-size': `${slideWidth}px`,
           'webkit-flex-basis': `${slideWidth}px`,
           'flex-basis': `${slideWidth}px`,
-          'visibility': slideWidth ? 'visible' : 'hidden',
-          'height': `${currentHeight}`,
+          visibility: slideWidth ? 'visible' : 'hidden',
+          height: `${currentHeight}`,
           'padding-left': `${padding}px`,
           'padding-right': `${padding}px`
         }"
@@ -40,7 +37,7 @@
     </slot>
 
     <slot name="pagination" v-if="paginationEnabled">
-      <pagination @paginationclick="goToPage($event, 'pagination')"/>
+      <pagination @paginationclick="goToPage($event, 'pagination')" />
     </slot>
   </div>
 </template>
@@ -98,9 +95,10 @@ export default {
       dragOffset: 0,
       dragStartY: 0,
       dragStartX: 0,
-      isTouch: (typeof window !== "undefined" && "ontouchstart" in window) ||  
-           ( navigator.maxTouchPoints > 0 ) ||  
-           ( navigator.msMaxTouchPoints > 0 ),
+      isTouch:
+        (typeof window !== "undefined" && "ontouchstart" in window) ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0,
       offset: 0,
       refreshRate: 16,
       slideCount: 0,
@@ -406,8 +404,8 @@ export default {
       const breakpointArray = this.perPageCustom;
       const width = this.browserWidth;
 
-      const breakpoints = breakpointArray.sort(
-        (a, b) => (a[0] > b[0] ? -1 : 1)
+      const breakpoints = breakpointArray.sort((a, b) =>
+        a[0] > b[0] ? -1 : 1
       );
 
       // Reduce the breakpoints to entries where the width is in range
@@ -730,17 +728,9 @@ export default {
         return;
       }
 
-      document.addEventListener(
-        this.isTouch ? "touchend" : "mouseup",
-        this.onEnd,
-        true
-      );
+      document.addEventListener("touchend mouseup", this.onEnd, true);
 
-      document.addEventListener(
-        this.isTouch ? "touchmove" : "mousemove",
-        this.onDrag,
-        true
-      );
+      document.addEventListener("touchmove mousemove", this.onDrag, true);
 
       this.startTime = e.timeStamp;
       this.dragging = true;
@@ -786,16 +776,8 @@ export default {
       this.render();
 
       // clear events listeners
-      document.removeEventListener(
-        this.isTouch ? "touchend" : "mouseup",
-        this.onEnd,
-        true
-      );
-      document.removeEventListener(
-        this.isTouch ? "touchmove" : "mousemove",
-        this.onDrag,
-        true
-      );
+      document.removeEventListener("touchend mouseup", this.onEnd, true);
+      document.removeEventListener("touchmove mousemove", this.onDrag, true);
     },
     /**
      * Trigger actions when mouse is pressed and then moved (mouse drag)
@@ -924,13 +906,10 @@ export default {
       debounce(this.onResize, this.refreshRate)
     );
 
-    // setup the start event only if touch device or mousedrag activated
-    if ((this.isTouch && this.touchDrag) || this.mouseDrag) {
-      this.$refs["VueCarousel-wrapper"].addEventListener(
-        this.isTouch ? "touchstart" : "mousedown",
-        this.onStart
-      );
-    }
+    this.$refs["VueCarousel-wrapper"].addEventListener(
+      "touchstart mousedown",
+      this.onStart
+    );
 
     this.attachMutationObserver();
     this.computeCarouselWidth();
@@ -967,7 +946,7 @@ export default {
     );
 
     this.$refs["VueCarousel-wrapper"].removeEventListener(
-      this.isTouch ? "touchstart" : "mousedown",
+      "touchstart mousedown",
       this.onStart
     );
   }
