@@ -1,12 +1,8 @@
 # Vue Carousel
 
-[![Build Status](https://travis-ci.org/SSENSE/vue-carousel.svg?branch=master)](https://travis-ci.org/SSENSE/vue-carousel)
-[![Coverage Status](https://coveralls.io/repos/github/SSENSE/vue-carousel/badge.svg?branch=master)](https://coveralls.io/github/SSENSE/vue-carousel?branch=master)
-[![Latest Stable Version](https://img.shields.io/npm/v/vue-carousel.svg)](https://www.npmjs.com/package/vue-carousel)
+> Warning! The package has been modified by the forker to go further maintaining it, because the origin is not anymore actively maintained. Please feel free to contribute!
 
-**WARNING: vue-carousel is at pre-alpha stage of development and may undergo significant changes.**
-
-**Feel free to submit issues and feature requests [here](https://github.com/SSENSE/vue-carousel/issues)**.
+**Feel free to submit issues and feature requests [here](https://github.com/mxzinke/vue-carousel/issues)**.
 
 **[Full documentation and examples](https://ssense.github.io/vue-carousel)**
 
